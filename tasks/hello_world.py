@@ -5,8 +5,8 @@ import pystache
 class HelloWorld():
     def __init__(self):
         with open('models/hello_world.json') as config_file:
-            self.config = json.load(config_file)
-            self.message = self.config['message']
+            # Map JSON properties to this object
+            self.__dict__.update(json.load(config_file))
 
     def process(self):
         renderer = pystache.Renderer(search_dirs='templates')
