@@ -7,14 +7,14 @@ class Task():
     def __init__(self):
         self.file_root_name = camel_case_to_underscore(self.__class__.__name__)
 
-        with open('models/{0}.json'.format(self.file_root_name)) as config_file:
+        with open('engine/models/{0}.json'.format(self.file_root_name)) as config_file:
             # Map JSON properties to this object
             self.__dict__.update(json.load(config_file))
 
     def process(self):
-        renderer = pystache.Renderer(search_dirs='templates')
+        renderer = pystache.Renderer(search_dirs='engine/templates')
 
-        with open('bin/{0}.txt'.format(self.file_root_name), 'w') as output_file:
+        with open('engine/bin/{0}.txt'.format(self.file_root_name), 'w') as output_file:
             output_file.write(renderer.render(self))
 
 
