@@ -1,5 +1,5 @@
 angular
-  .module('kitchenSync', [])
+  .module('automationStation', [])
   .controller('MainController', function($scope) {
     $scope.tasks = ['HelloWorld'];
   });
