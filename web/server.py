@@ -1,6 +1,7 @@
-import webbrowser
 from flask import Flask
-from engine.tasks.hello_world import *
+
+from plugins.hello_world.hello_world import *
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
