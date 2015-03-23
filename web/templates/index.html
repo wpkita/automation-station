@@ -8,10 +8,18 @@
 <h1>Automation Station</h1>
 
 <h3>Tasks</h3>
+
+{% if tasks %}
 <ul>
+    {% for task in tasks %}
     <li class="as-box">
-        <a class="as-link" href="#">Task one</a>
+        <a class="as-link" href="#">{{ task }}</a>
     </li>
+    {% endfor %}
 </ul>
+{% else %}
+<p>No tasks were found. Please add a task to your configuration file.</p>
+{% endif %}
+
 </body>
 </html>
