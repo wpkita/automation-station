@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from engine import runner
 
 
@@ -7,7 +7,11 @@ app.config['DEBUG'] = True
 
 
 @app.route('/')
-def home():
+@app.route('/task/<task_name>')
+def home(task_name=None):
+    if task_name:
+        runner.run_task(task_name)
+
     tasks = runner.get_task_names()
 
     return render_template('index.html', tasks=tasks)
