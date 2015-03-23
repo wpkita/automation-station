@@ -1,7 +1,5 @@
 from flask import Flask
 
-from plugins.hello_world.hello_world import *
-
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -10,13 +8,6 @@ app.config['DEBUG'] = True
 @app.route('/')
 def home():
     return app.send_static_file('index.html')
-
-
-@app.route('/helloworld')
-def hello():
-    HelloWorld().process()
-
-    return 'Ran successfully!'
 
 
 def start():
