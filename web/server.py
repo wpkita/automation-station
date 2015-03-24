@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from engine import runner
 
-
 app = Flask(__name__)
 app.config['DEBUG'] = True
 

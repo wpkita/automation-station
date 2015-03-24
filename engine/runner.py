@@ -12,10 +12,6 @@ def get_task_names():
 
 
 def run_task(task_name):
-    print('\n\n')
-    print(task_name)
-    print(config)
     task_path, = (t['path'] for t in config['tasks'] if t['name'] == task_name)
-    print(task_path)
-    print('\n\n')
+
     subprocess.call('./tasks/{0}'.format(task_path))
