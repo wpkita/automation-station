@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="automationStation">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Automation Station</title>
+</head>
+<body ng-controller="MainController">
+<h1>Automation Station</h1>
+
+<h3>Tasks</h3>
+
+<ul>
+    <li ng-repeat="task in tasks">
+        <a ng-click="runTask(task)">{{ task.name }}</a>
+    </li>
+</ul>
+<p>No tasks were found. Please add a task to your configuration file.</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+<script src="/static/index.js"></script>
+</body>
+</html>
