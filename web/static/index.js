@@ -12,4 +12,18 @@ angular
         method: 'GET'
       });
     };
+
+    $http.post('/dropbox/token', hashToDict(window.location.hash));
+
+    function hashToDict(hash) {
+      var dict = {};
+
+      // Split the query parameters from the hash
+      angular.forEach(hash.replace(/#|\//g, '').split('&'), function(pair) {
+        var tuple = pair.split('=');
+        dict[tuple[0]] = tuple[1];
+      });
+
+      return dict;
+    }
   });
