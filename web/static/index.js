@@ -9,7 +9,7 @@ angular
     $scope.runTask = function(task) {
       $http({
         url: '/task/' + task.name,
-        method: 'GET'
+        method: 'POST'
       });
     };
 

@@ -25,7 +25,7 @@ def tasks():
     return flask.jsonify(tasks=runner.get_tasks())
 
 
-@app.route('/task/<task_name>')
+@app.route('/task/<task_name>', methods=['GET', 'POST'])
 def run_task(task_name=None):
     if task_name:
         task = runner.get_task(task_name)
