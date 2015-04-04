@@ -5,6 +5,16 @@ app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
 
+# Decorator to be used in the future for authorizing web requests
+def authorized(f):
+    def wrapper(*args, **kwargs):
+        if auth.is_authorized():
+            return f(*args, **kwargs)
+        else:
+            return flask.redirect(auth.get_auth_uri())
+    return wrapper
+
+
 @app.route('/')
 def home():
     return app.send_static_file('index.html')
@@ -31,22 +41,16 @@ def run_task(task_name=None):
     flask.abort(400)
 
 
-@app.route('/dropbox/auth')
-def dropbox_auth():
-    dropbox_config = {
-        'client_id': 'ax0k4eseumuduy8',
-        'response_type': 'token',
-        'redirect_uri': 'http://localhost:5000'
-    }
+@app.route('/authorize')
+def authorize():
+    if not auth.is_authorized():
+        return flask.redirect(auth.get_auth_uri())
 
-    dropbox_auth_uri = 'https://www.dropbox.com/1/oauth2/authorize?client_id={0}&response_type={1}&redirect_uri={2}'\
-        .format(dropbox_config['client_id'], dropbox_config['response_type'], dropbox_config['redirect_uri'])
-
-    return flask.redirect(dropbox_auth_uri)
+    return flask.redirect('/')
 
 
-@app.route('/dropbox/token', methods=['POST'])
-def dropbox_token():
+@app.route('/token', methods=['POST'])
+def token():
     token = flask.request.json['access_token']
 
     auth.set_auth_token(token)

@@ -13,7 +13,9 @@ angular
       });
     };
 
-    $http.post('/dropbox/token', hashToDict(window.location.hash));
+    if (window.location.hash) {
+      $http.post('/token', hashToDict(window.location.hash));
+    }
 
     function hashToDict(hash) {
       var dict = {};
