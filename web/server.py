@@ -1,6 +1,5 @@
+from engine import auth, runner
 import flask
-from engine import runner
-from engine import auth
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
@@ -50,7 +49,7 @@ def dropbox_auth():
 def dropbox_token():
     token = flask.request.json['access_token']
 
-    auth.save_auth_token(token)
+    auth.set_auth_token(token)
 
     return token
 

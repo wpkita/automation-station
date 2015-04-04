@@ -1,18 +1,13 @@
-import json
+from engine import config
 import subprocess
-
-CONFIG_PATH = 'tasks/config.json'
-
-with open(CONFIG_PATH) as config_file:
-    config = json.load(config_file)
 
 
 def get_tasks():
-    return [task for task in config['tasks']]
+    return [task for task in config.get_value('tasks')]
 
 
 def get_task(task_name):
-    task = next((task for task in config['tasks'] if task['name'] == task_name), None)
+    task = next((task for task in config.get_value('tasks') if task['name'] == task_name), None)
 
     return task
 
