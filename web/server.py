@@ -1,8 +1,18 @@
+from engine import auth, runner
 import flask
-from engine import runner
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
+
+
+# Decorator to be used in the future for authorizing web requests
+def authorized(f):
+    def wrapper(*args, **kwargs):
+        if auth.is_authorized():
+            return f(*args, **kwargs)
+        else:
+            return flask.redirect(auth.get_auth_uri())
+    return wrapper
 
 
 @app.route('/')
@@ -29,6 +39,23 @@ def run_task(task_name=None):
         flask.abort(404)
 
     flask.abort(400)
+
+
+@app.route('/authorize')
+def authorize():
+    if not auth.is_authorized():
+        return flask.redirect(auth.get_auth_uri())
+
+    return flask.redirect('/')
+
+
+@app.route('/token', methods=['POST'])
+def token():
+    token = flask.request.json['access_token']
+
+    auth.set_auth_token(token)
+
+    return token
 
 
 def start():
