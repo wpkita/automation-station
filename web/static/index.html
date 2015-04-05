@@ -22,12 +22,12 @@
 
 <div class="container">
     <h2>Tasks</h2>
-    <ul>
+    <ul class="tasks">
         <li ng-repeat="task in tasks">
-            <button class="btn btn-primary" ng-click="runTask(task)">{{ task.name }}</button>
+            <button class="task-tile btn btn-primary" ng-click="runTask(task)">{{ task.name }}</button>
         </li>
         <li>
-            <button id="newTask" class="btn btn-success">New task...</button>
+            <button id="newTask" class="task-tile btn btn-success">New task...<br>(Drag files here!)</button>
         </li>
     </ul>
     <p ng-hide="tasks">No tasks were found. Please add a task to your configuration file.</p>
