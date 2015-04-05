@@ -10,3 +10,9 @@ li {
     display: inline-block;
     margin-right: 1em;
 }
+
+.task-tile {
+    width: 10em;
+    height: 10em;
+    white-space: inherit;
+}
