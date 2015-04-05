@@ -26,13 +26,25 @@ def tasks():
 
 
 @app.route('/task/<task_name>', methods=['GET', 'POST'])
+def task(task_name=None):
+    if task_name:
+        if flask.request.method == 'POST':
+            task = runner.add_task(task_name)
+        else:
+            task = runner.get_task(task_name)
+
+        return flask.jsonify(task)
+
+    flask.abort(400)
+
+
+@app.route('/run/<task_name>', methods=['PUT'])
 def run_task(task_name=None):
     if task_name:
         task = runner.get_task(task_name)
 
         if task is not None:
-            if flask.request.method == 'POST':
-                runner.run_task(task_name)
+            runner.run_task(task_name)
 
             return flask.jsonify(task)
 

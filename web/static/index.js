@@ -8,10 +8,28 @@ angular
 
     $scope.runTask = function(task) {
       $http({
-        url: '/task/' + task.name,
-        method: 'POST'
+        url: '/run/' + task.name,
+        method: 'PUT'
       });
     };
+
+    // TODO: Create directive for this
+    var dragDrop = document.getElementById('newTask');
+    dragDrop.addEventListener('dragover', function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+    });
+    dragDrop.addEventListener('drop', function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+
+      var files = event.dataTransfer.files;
+
+      for (var i = 0; i < files.length; i++)
+      {
+        $http.post('/task/' + files[i].name);
+      }
+    });
 
     if (window.location.hash) {
       $http.post('/token', hashToDict(window.location.hash));
