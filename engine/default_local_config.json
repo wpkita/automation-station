@@ -1,0 +1,3 @@
+{
+  "taskDirectory": "" // TODO: Move this to the cloud config, so each computer doesn't have to reauthorize
+}
