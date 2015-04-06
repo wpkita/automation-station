@@ -29,7 +29,10 @@ def tasks():
 def task(task_name=None):
     if task_name:
         if flask.request.method == 'POST':
-            task = runner.add_task(task_name)
+            task, did_succeed = runner.add_task(task_name)
+
+            if not did_succeed:
+                flask.abort(409)
         else:
             task = runner.get_task(task_name)
 

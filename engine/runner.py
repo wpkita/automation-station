@@ -13,21 +13,23 @@ def get_task(task_name):
 
 
 def add_task(task_name):
-    new_task = {
-        'name': task_name,
-        'path': task_name
-    }
-
     tasks = config.get_value('tasks')
 
     # Make sure the task doesn't already exist
     task = get_task(task_name)
     if task is None:
+        new_task = {
+            'name': task_name,
+            'path': task_name
+        }
+
         # Update config with new task
         tasks.append(new_task)
         config.set_value('tasks', tasks)
 
-    return task
+        return new_task, True
+
+    return task, False
 
 
 def run_task(task_name):
