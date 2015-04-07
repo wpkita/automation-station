@@ -34,6 +34,18 @@ class Runner:
 
         return task, False
 
+    def remove_task(self, task_name):
+        tasks = self.cloud_config.get_value('tasks')
+
+        task = self.get_task(task_name)
+        if task is not None:
+            tasks.remove(task)
+            self.cloud_config.set_value('tasks', tasks)
+
+            return True
+
+        return False
+
     def run_task(self, task_name):
         task = self.get_task(task_name)
 

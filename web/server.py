@@ -45,6 +45,15 @@ def task(task_name=None):
     flask.abort(400)
 
 
+@app.route('/task/<task_name>', methods=['DELETE'])
+def remove_task(task_name=None):
+    if task_name:
+        if runner.remove_task(task_name):
+            return '{0} was successfully removed.'.format(task_name)
+
+    flask.abort(400)
+
+
 @app.route('/run/<task_name>', methods=['PUT'])
 def run_task(task_name=None):
     if task_name:
