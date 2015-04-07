@@ -1,8 +1,12 @@
-from engine import auth, runner
+from engine.auth import Authorizer
+from engine.runner import Runner
 import flask
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
+
+auth = Authorizer()
+runner = Runner()
 
 
 # Decorator to be used in the future for authorizing web requests
