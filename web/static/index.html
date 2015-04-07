@@ -25,6 +25,10 @@
     <p ng-hide="tasks">No tasks were found. Drag and drop a file into the box below to get started.</p>
     <ul class="tasks">
         <li class="task" ng-repeat="task in tasks">
+            <div class="task-tools">
+                <a class="task-tool" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="task-tool" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
             <button class="task-tile btn btn-primary" ng-click="runTask(task)">{{ task.name }}</button>
         </li><li class="task">
             <button droppy class="task-tile btn btn-success">New task...<br>(Drag files here!)</button>
