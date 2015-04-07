@@ -13,6 +13,20 @@ angular
     });
   };
 
+  $scope.removeTask = function(task, tasks) {
+    $http({
+      url: '/task/' + task.name,
+      method: 'DELETE'
+    }).success(function() {
+      console.log('Task removal succeeded.');
+      console.log.apply(console, arguments);
+
+      tasks.splice(tasks.indexOf(task), 1)
+    }).error(function() {
+      console.error.apply(console, arguments);
+    })
+  };
+
   if (window.location.hash) {
     $http.post('/token', hashToDict(window.location.hash));
   }
