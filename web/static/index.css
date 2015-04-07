@@ -12,10 +12,25 @@ body {
     height: 100px;
     margin: 0 10px 10px 0;
     display: inline-block;
+    position: relative;
 }
 
 .task-tile {
     width: 100%;
     height: 100%;
     white-space: inherit;
+}
+
+.task-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.task-tool {
+    display: inline-block;
+    color: #fff;
+    width: 1em;
+    height: 1em;
+    margin: 2px;
 }
