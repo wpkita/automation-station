@@ -38,9 +38,7 @@ class Runner:
         task = self.get_task(task_name)
 
         if task:
-            full_path = '{0}/{1}'.format(self.local_config.get_task_directory(), task['path'])
-            subprocess.call(full_path)
-            # subprocess.call('{0}/{1}'.format(self.local_config.get_task_directory(), task['path']))
+            subprocess.call('{0}/{1}'.format(self.local_config.get_task_directory(), task['path']))
 
             return True
 
